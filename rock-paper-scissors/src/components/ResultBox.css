@@ -1,0 +1,21 @@
+.winner {
+
+    height: 180px;
+    width: 326px;
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 12px;
+
+}
+
+.text {
+
+    font-family: Tahoma;
+    font-size: 32px;
+
+}
