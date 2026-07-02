@@ -1,0 +1,49 @@
+.card {
+
+    width: 420px;
+    height: 380px;
+    background-color: #333333;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.image {
+
+    object-fit: contain;
+    height: 40%;
+    margin-bottom: 100px;
+    
+}
+
+.body {
+
+    height: 360px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.heading {
+
+    display: flex;
+    justify-content: center;
+    background-color: #222222;
+    height: 30px;
+    width: 380px;
+    border-radius: 16px 16px 0 0;
+    padding: 20px 20px 8px 20px;
+    justify-content: space-between;
+
+}
+
+.name {
+
+    font-size: 20px;
+    color: white;
+    font-family: Tahoma
+
+}
