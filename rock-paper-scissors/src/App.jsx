@@ -8,22 +8,22 @@ import { useState } from "react"
 export default function App() {
 
   const playerImages = [
-                       "https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/right_rock.png?raw=true",
-                       "https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/right_paper.png?raw=true",
-                       "https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/right_scissor.png?raw=true"
+                       "https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/you_rock.webp?raw=true",
+                       "https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/you_paper.webp?raw=true",
+                       "https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/you_scissor.webp?raw=true"
                       ]
   
   const cpuImages = [
-                    "https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/left_rock.png?raw=true",
-                    "https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/left_paper.png?raw=true",
-                    "https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/left_scissor.png?raw=true"
+                    "https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/cpu_rock.webp?raw=true",
+                    "https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/cpu_paper.webp?raw=true",
+                    "https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/cpu_scissor.webp?raw=true"
                    ]
 
   const [cpuImage, setCpuImage] = useState("")
   const [playerImage, setPlayerImage] = useState("")
   const [cpuScore, setCpuScore] = useState(0)
   const [playerScore, setPlayerScore] = useState(0)
-  const [playerName, setPlayerName] = useState("You")
+  const [playerName, setPlayerName] = useState("YOU")
   const [winner, setWinner] = useState("")
   const [input, setInput] = useState("")
 
@@ -102,7 +102,7 @@ export default function App() {
           
           <div className="middle">
           
-              <img src="https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/%E2%80%94Pngtree%E2%80%94vs_6020206.png?raw=true" className="vs" />
+              <img src="https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/vs.webp?raw=true" className="vs" />
               
               {
               
@@ -129,15 +129,15 @@ export default function App() {
 
             <div className="playerButtons">
 
-              <PlayerButton image="https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/rock.png?raw=true" 
+              <PlayerButton image="https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/rock.webp?raw=true" 
                             id={0}
                             onClick={selection} />
               
-              <PlayerButton image="https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/paper3.png?raw=true" 
+              <PlayerButton image="https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/paper.webp?raw=true" 
                             id={1}
                             onClick={selection} />
               
-              <PlayerButton image="https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/scissor.png?raw=true"  
+              <PlayerButton image="https://github.com/Ishaak1/react-practice/blob/main/rock-paper-scissors/assets/scissor.webp?raw=true"  
                             id={2}
                             onClick={selection} />
 
