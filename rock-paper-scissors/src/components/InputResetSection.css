@@ -25,6 +25,7 @@
     background-image: url("../icons/right-arrow.png");
     background-size: contain;
     background-repeat: no-repeat;
+    outline: none;
 
 }
 
