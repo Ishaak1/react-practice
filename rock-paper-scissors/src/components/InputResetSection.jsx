@@ -1,6 +1,7 @@
 import "./InputResetSection.css"
+import { useState } from "react"
 
-export default function InputResetSection() {
+export default function InputResetSection({ input, setInput, setPlayerName, updateName, resetGame }) {
 
     return (
 
@@ -8,15 +9,18 @@ export default function InputResetSection() {
 
             <div className="topRow">
 
-                <input placeholder="Enter your name" ></input>
+                <input placeholder="Enter your name" 
+                       value={input}
+                       onChange={(event) => setInput(event.target.value)}
+                        />
                 
-                <button className="submit">
+                <button className="submit" onClick={updateName}>
                     <div className="submitArrow" />
                 </button>
 
             </div>
 
-            <button className="reset">RESET</button>
+            <button className="reset" onClick={resetGame}>RESET</button>
 
         </div>
 
