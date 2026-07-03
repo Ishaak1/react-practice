@@ -9,7 +9,10 @@ export default function Card({ name, score, image }) {
             <div className="heading">
             
                 <p className="name">{name}</p>
-                <p className="name">{score}</p>
+                
+                {
+                    (score > 0) && <p className="name">{score}</p>
+                }
             
             </div>
     
