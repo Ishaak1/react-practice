@@ -6,7 +6,7 @@ export default function ResultBox({ name }) {
 
         <div className="winner">
 
-            <p className="text">Winner:</p>
+            <p className="text">{(name !== "") ? "Winner" : "DRAW"}</p>
             <p className="text">{name}</p>
 
         </div>
