@@ -1,0 +1,17 @@
+.line1 {
+
+    height: 6px;
+    width: 80px;
+    background-color: greenyellow;
+    transform: rotate(45deg)
+
+}
+
+.line2 {
+
+    height: 100%;
+    width: 100%;
+    background-color: greenyellow;
+    transform: rotate(-90deg)
+
+}
