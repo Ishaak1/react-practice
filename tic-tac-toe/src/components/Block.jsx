@@ -13,9 +13,7 @@ export default function Block({ symbol, id, onClick }) {
     return (
 
         <div className="block" onClick={selected}>
-
             {(symbol === "-") ? null : ((symbol === "x") ? <X /> : <O /> )}
-
         </div>
 
     )
