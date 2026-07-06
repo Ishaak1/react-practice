@@ -10,8 +10,30 @@
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: white;
+  margin-right: 50px;
+
+}
+
+.sideBar {
+
+  width: 400px;
+  height: 640px;
+
+}
+
+.leftSpace {
+
+  width: 450px
+
+}
+
+.right {
+
+  padding: 50px;
+  display: flex;
+  justify-content: flex-end;
 
 }
