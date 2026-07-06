@@ -1,0 +1,33 @@
+.scoreBoard {
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.names {
+
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.scores {
+
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+
+.scoreBoardText {
+
+    font-size: 24px;
+    font-family: Tahoma;
+
+}
