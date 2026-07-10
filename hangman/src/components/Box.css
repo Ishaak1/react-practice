@@ -1,0 +1,18 @@
+.box {
+
+    height: 80px;
+    width: 80px;
+    border: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+
+}
+
+.boxText {
+
+    font-family: Tahoma;
+    font-size: 48px;
+
+}
