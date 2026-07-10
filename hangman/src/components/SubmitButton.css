@@ -1,0 +1,31 @@
+.submitButton {
+
+    transition: all 0.5s;
+    height: 60px;
+    width: 30%;
+    border-radius: 12px;
+    border: 0;
+    background-color: #111111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+
+}
+
+.submitButton:hover {
+
+    background-color: #333333;
+    cursor: pointer;
+
+}
+
+.arrow {
+
+    height: 32px;
+    width: 32px;
+    background-image: url("../assets/right-arrow-white.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+
+}
