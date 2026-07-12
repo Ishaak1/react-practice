@@ -9,8 +9,7 @@ import { generate } from "random-words"
 export default function App() {
 
   const [attempts, setAttempts] = useState(8)
-  const [hiddenChars, setHiddenChars] = useState([])
-  const [hiddenIndices, setHiddenIndices] = useState([])
+  const [hiddenCharAndIndices, setHiddenCharAndIndices] = useState({})
   const [word, setWord] = useState("")
   const [listOfVisibleLetters, setListOfVisibleLetters] = useState([])
   const [guess, setGuess] = useState("")
@@ -21,8 +20,7 @@ export default function App() {
     setWord(newWord)
     var visibleIndices = []
     var gameLetters = []
-    var hidden = []
-    var hiddenLetters = []
+    var hiddenObject = {}
     
     for (let i = 0; i < newWord.length; i++) {
 
@@ -30,15 +28,11 @@ export default function App() {
 
     }
 
-    var length = 0
+    var length = visibleIndices.length / 2
 
-    if (visibleIndices.length % 2 === 0) {
+    if (visibleIndices.length % 2 !== 0) {
 
-      length = (visibleIndices.length / 2)
-
-    } else {
-
-      length = ((visibleIndices.length / 2) - 0.5) + 1
+      length = Math.floor(visibleIndices.length / 2) + 1
 
     }
 
@@ -47,14 +41,23 @@ export default function App() {
       const randomNum = Math.random() * visibleIndices.length
       const randomOption = visibleIndices[Math.floor(randomNum)]
       visibleIndices = visibleIndices.filter(item => item !== randomOption)
+      
+      const isStored = newWord[randomOption] in hiddenObject
+      const char = newWord[randomOption]
 
-      hidden.push(randomOption)
-      hiddenLetters.push(newWord[randomOption])
+      if (!isStored) {
+        
+        hiddenObject[char] = [randomOption]
+  
+      } else {
 
+        hiddenObject[char].push(randomOption)
+
+      }
+ 
     }
     
-    setHiddenIndices(hidden)
-    setHiddenChars(hiddenLetters)
+    setHiddenCharAndIndices(hiddenObject)
 
     for (let i = 0; i < newWord.length; i++) {
 
@@ -84,90 +87,74 @@ export default function App() {
 
     const newGuess = guess.toUpperCase()
     
-    if ((attempts !== 0) && (guess.length !== 0)) {  
+    if ((attempts > 0) && (guess.length > 0)) {  
 
-      var newHiddenChars = hiddenChars
-      var newListOfVisibleLetters = listOfVisibleLetters
-      var newHiddenIndices = hiddenIndices
+      var newListOfVisibleLetters = structuredClone(listOfVisibleLetters)
+      var newHiddenCharAndIndices = structuredClone(hiddenCharAndIndices)
+      const isHidden = newGuess in newHiddenCharAndIndices
 
-      if (newHiddenChars.includes(newGuess)) {
+      if (isHidden) {
 
-        for (let i = 0; i < newHiddenChars.length; i++) {
+        for (const index of newHiddenCharAndIndices[newGuess]) {
 
-          if (newHiddenChars[i] === newGuess) {
-            
-            const index = newHiddenIndices[i]
-            newListOfVisibleLetters[index] = newGuess
-            
-          }
+          newListOfVisibleLetters[index] = newGuess
 
         }
-              
-        for (let i = 0; i < newListOfVisibleLetters.length; i++) {
-          
-          if (newListOfVisibleLetters[i] === newGuess) {
-        
-            newHiddenIndices = newHiddenIndices.filter(item => item !== i)
-          
-          }
-        
-        }
 
-        newHiddenChars = newHiddenChars.filter(item => item !== newGuess)
+        delete newHiddenCharAndIndices[newGuess]
 
-        setListOfVisibleLetters(newListOfVisibleLetters)
-        setHiddenChars(newHiddenChars)
-        setHiddenIndices(newHiddenIndices)
+      }
 
-      } else {
+      if (!isHidden && newGuess !== word) {
 
         const newAttempts = attempts - 1
     
         if (newAttempts === 0) {
 
-          for (let i = 0; i < listOfVisibleLetters.length; i++) {
-  
-            listOfVisibleLetters[i] = word[i]
+          for (let i = 0; i < newListOfVisibleLetters.length; i++) {
+            
+            const char = word[i]
+            newListOfVisibleLetters[i] = char
 
           }
 
         }
 
         setAttempts(newAttempts)
-  
+
       }
 
       if (newGuess === word) {
 
-        for (let i = 0; i < listOfVisibleLetters.length; i++) {
+        for (let i = 0; i < newListOfVisibleLetters.length; i++) {
 
-          listOfVisibleLetters[i] = word[i]
+          const char = word[i]
+          newListOfVisibleLetters[i] = char
+          const isCharInObject =  char in newHiddenCharAndIndices
 
-          if (newHiddenChars.includes(word[i])) {
-
-            newHiddenChars = newHiddenChars.filter(item => item !== word[i])
+          if (isCharInObject) {
+  
+            delete newHiddenCharAndIndices[char]
 
           }
 
         }
 
-        setHiddenChars(newHiddenChars)
-
       }
+
+      setHiddenCharAndIndices(newHiddenCharAndIndices)
+      setListOfVisibleLetters(newListOfVisibleLetters)
       
     }
 
-
-
     setGuess("")
-
+  
   }
-
+  
   function reset() {
 
     setAttempts(8)
-    setHiddenChars([])
-    setHiddenIndices([])
+    setHiddenCharAndIndices({})
     setListOfVisibleLetters([])
     setup()
 
@@ -180,11 +167,12 @@ export default function App() {
       <div className="background">
 
         <Header attempts={attempts}
-                hiddenChars={hiddenChars}
+                hiddenCharAndIndices={hiddenCharAndIndices}
                 word={word}/>
 
         <RowOfBoxes listOfVisibleLetters={listOfVisibleLetters}
-                    hiddenChars={hiddenChars} />
+                    hiddenCharAndIndices={hiddenCharAndIndices}
+                    attempts={attempts} />
 
         <GuessSubmitSection guess={guess}
                             setGuess={setGuess}
@@ -192,8 +180,8 @@ export default function App() {
 
         {
           
-          (attempts !== 0) && (hiddenChars.length !== 0) ? <ResetPlayAgain text="RESET" onClick={reset}/> : 
-                                                           <ResetPlayAgain text="Play Again" onClick={reset} />
+          (attempts > 0) && (Object.keys(hiddenCharAndIndices).length > 0) ? <ResetPlayAgain text="RESET" onClick={reset}/> : 
+                                                                             <ResetPlayAgain text="Play Again" onClick={reset} />
           
         }
 

@@ -1,6 +1,9 @@
 import "./Box.css"
 
-export default function Box({ letter, index, lastIndex, hiddenChars }) {
+export default function Box({ letter, index, lastIndex, hiddenCharAndIndices, attempts }) {
+
+    const isInObject = letter in hiddenCharAndIndices
+    const isLetterMissing = isInObject && hiddenCharAndIndices[letter].includes(index)
 
     return (
 
@@ -8,7 +11,7 @@ export default function Box({ letter, index, lastIndex, hiddenChars }) {
             
             {
 
-                (letter !== "-") && <p className="boxText" style ={{"color": (hiddenChars.includes(letter)) ? "deeppink" : "black" }}>{letter}</p>
+                (letter !== "-") && <p className="boxText" style={{"color": (isLetterMissing && attempts === 0) ? "deeppink" : "black" }}>{letter}</p>
             
             }
 
