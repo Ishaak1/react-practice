@@ -1,9 +1,9 @@
 .playAgainButton {
 
-    height: 52px;
+    height: 60px;
     width: 440px;
     margin-top: 12px;
-    border-radius: 16px;
+    border-radius: 12px;
     border: 0;
     background-color: #111111;
     outline: none;

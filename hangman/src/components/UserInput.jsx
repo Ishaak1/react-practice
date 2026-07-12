@@ -1,6 +1,6 @@
-import "./Guess.css"
+import "./UserInput.css"
 
-export default function Guess({ guess, setGuess }) {
+export default function UserInput({ guess, setGuess }) {
 
     return (
 

@@ -1,5 +1,5 @@
 import "./GuessSubmitSection.css"
-import Guess from "./Guess"
+import UserInput from "./UserInput"
 import SubmitButton from "./SubmitButton"
 
 export default function GuessSubmitSection({ guess, setGuess, onClick }) {
@@ -8,7 +8,7 @@ export default function GuessSubmitSection({ guess, setGuess, onClick }) {
 
         <div className="guessSubmitSection">
 
-            <Guess guess={guess}
+            <UserInput guess={guess}
                    setGuess={setGuess}/>
             
             <SubmitButton onClick={onClick}/>
