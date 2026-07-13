@@ -1,0 +1,21 @@
+.noTasks {
+
+    width: 544px;
+    height: 164px;
+    border: 2px dashed black;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.noTasksText {
+
+    text-align: center;
+    width: 60%;
+    font-size: 32px;
+    font-family: Tahoma;
+
+}
