@@ -1,0 +1,10 @@
+.taskDeleteRow {
+
+    background-color: black;
+    padding: 12px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+
+}
