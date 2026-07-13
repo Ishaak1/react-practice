@@ -1,0 +1,51 @@
+.taskCard {
+
+    background-color: black;
+    width: 520px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 12px;
+
+}
+
+.task {
+
+    transition: all 0.5s;
+    width: 400px;
+    background-color: #333333;
+    padding: 12px;
+    border-radius: 12px;
+    
+}
+
+.task:hover {
+
+    cursor: pointer;
+    background-color: #555555;
+
+} 
+
+.taskCardText {
+
+    font-family: Tahoma;
+    font-size: 20px;
+    color: white;
+
+}
+
+.checkBox {
+
+    height: 20px;
+    width: 20px;
+    border: 2px solid white;
+    margin-bottom: 12px;
+    border-radius: 100px;
+    accent-color: darkgreen;
+
+}
+
+.checkBox:hover {
+
+    cursor: pointer;
+
+}
