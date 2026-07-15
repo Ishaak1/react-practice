@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 12px;
+    border-radius: 8px;
 
 }
 
@@ -21,7 +21,7 @@
 
 .line1 {
 
-    width: 50px;
+    width: 40px;
     height: 4px;
     background-color: deeppink;
     transform: rotate(45deg);

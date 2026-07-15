@@ -1,15 +1,17 @@
 import "./TaskDeleteRow.css"
 import TaskCard from "./TaskCard"
 
-export default function TaskDeleteRow({ task, row, lastTask, onClick }) {
+export default function TaskDeleteRow({ task, id, lastTask, onClick, isDone, complete }) {
 
     return (
 
-        <div className="taskDeleteRow" style={{"margin-bottom": (row === lastTask)? "0px" : "12px"}}>
+        <div className="taskDeleteRow" style={{"margin-bottom": (id === lastTask)? "0px" : "12px"}}>
 
             <TaskCard task={task}
-                      row={row}
-                      onClick={onClick} />
+                      id={id}
+                      onClick={onClick}
+                      isDone={isDone}
+                      complete={complete} />
 
         </div>
 

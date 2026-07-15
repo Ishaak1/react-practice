@@ -8,31 +8,43 @@ export default function App() {
 
   const [tasks, setTasks] = useState([])
   const [input, setInput] = useState("")
-  const [keys, setKeys] = useState([])
+
+  function complete(id) {
+
+    var newTasks = structuredClone(tasks)
+    const index = newTasks.findIndex(item => item.id === id)
+    const task = newTasks[index]
+
+    if (task["isDone"] === false ) {
+
+      task["isDone"] = true
+
+    } else {
+
+      task["isDone"] = false
+
+    }
+
+    setTasks(newTasks)
+
+  }
 
   function submit() {
 
-    const newInput = input
-    const newTasks = structuredClone(tasks)
-    newTasks.push(newInput)
+    var newTasks = structuredClone(tasks)
+    const task = { task: input, isDone: false, id: crypto.randomUUID() }
+    newTasks.push(task)
+
     setTasks(newTasks)
     setInput("")
-
-    var newKeys = structuredClone(keys)
-    newKeys.push(crypto.randomUUID())
-    setKeys(newKeys)
 
   }
 
   function removeTask(id) {
 
     var newTasks = structuredClone(tasks)
-    newTasks = newTasks.filter((item, index) => index !== id)
-    setTasks(newTasks)    
-
-    var newKeys = structuredClone(keys)
-    newKeys = newKeys.filter((item, index) => index !== id)
-    setKeys(newKeys)
+    newTasks = newTasks.filter(item => item.id !== id)
+    setTasks(newTasks)
 
   }
 
@@ -48,15 +60,17 @@ export default function App() {
           
           <div className="cards">          
           
-          {
+            {
             
-            (tasks.length === 0) ?  <NoTasks /> : tasks.map((item, index) => <TaskDeleteRow row={index}
-                                                                                            task={item}
-                                                                                            key={keys[index]}
-                                                                                            lastTask={tasks.length - 1}
-                                                                                            onClick={removeTask} />) 
+              (tasks.length === 0) ?  <NoTasks /> : tasks.map((item) => <TaskDeleteRow id={item.id}
+                                                                                       task={item.task}
+                                                                                       key={item.id}
+                                                                                       lastTask={Object.keys(tasks).length - 1}
+                                                                                       onClick={removeTask}
+                                                                                       complete={complete}
+                                                                                       isDone={item.isDone} />) 
             
-          }
+            }
           
           </div>
 

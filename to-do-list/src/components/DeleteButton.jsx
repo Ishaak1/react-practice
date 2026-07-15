@@ -1,10 +1,10 @@
 import "./DeleteButton.css"
 
-export default function DeleteButton({ row, onClick }) {
+export default function DeleteButton({ id, onClick }) {
 
     function remove() {
 
-        onClick(row)
+        onClick(id)
 
     }
 
@@ -14,7 +14,7 @@ export default function DeleteButton({ row, onClick }) {
 
             <div className="line1">
             
-                <div className="line2"></div>
+                <div className="line2"/>
             
             </div>
 
