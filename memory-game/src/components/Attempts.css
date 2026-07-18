@@ -1,0 +1,18 @@
+.count {
+
+    height: 58px;
+    padding-left: 20px;
+    width: 100px;
+    border: 3px solid black;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+
+}
+
+.countText {
+
+    font-family: Tahoma;
+    font-size: 28px;
+
+}
