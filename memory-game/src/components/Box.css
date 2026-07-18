@@ -1,0 +1,26 @@
+.box {
+
+    transition: all 0.5s80;
+    height: 100%;
+    width: 140px;
+    border: 3px solid #000000;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.image {
+
+    height: 80px;
+    width: 80px;
+
+}
+
+.box:hover {
+
+    cursor: pointer;
+    background-color: #dddddd;
+
+}
