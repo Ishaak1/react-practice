@@ -1,122 +1,149 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
+import Board from "./components/Board"
+import Attempts from "./components/Attempts"
+import PlayAgainReset from "./components/PlayAgainReset"
+import { useState, useEffect } from "react"
 
-function App() {
-  const [count, setCount] = useState(0)
+
+let memorizeTimer = null
+let revealTimer = null
+
+export default function App() {
+  
+  const [attempts, setAttempts] = useState(0)
+  const [correct, setCorrect] = useState({})
+  const [selected, setSelected] = useState({})
+  const [shapes, setShapes] = useState([
+                                        
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/circle.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/hexagon.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/octagon.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/pentagon.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/rhombus.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/square.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/star.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/triangle.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/circle.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/hexagon.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/octagon.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/pentagon.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/rhombus.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/square.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/star.png?raw=true",
+                                        "https://github.com/Ishaak1/react-practice/blob/main/memory-game/src/assets/triangle.png?raw=true"
+                                        
+                                      ]) 
+
+  function setupBoard() {
+
+    var shuffledShapes = structuredClone(shapes)
+    shuffledShapes = shuffledShapes.sort(() => Math.random() - 0.5)
+    setShapes(shuffledShapes)
+    
+    var newCorrect = {}
+
+    for (let i = 0; i < shuffledShapes.length; i++) {
+
+      newCorrect[i] = shuffledShapes[i]
+
+    }
+
+    setCorrect(newCorrect)
+
+    clearTimeout(revealTimer)
+
+    memorizeTimer = setTimeout(() => {
+
+      setCorrect({})
+
+    }, 15000)
+
+    setAttempts(0)
+
+  }
+
+  useEffect(() => {
+    
+    setupBoard()
+  
+  }, [])
+  
+  function selectedBlock(id) {
+
+    const clicked = id in correct
+
+    if (!clicked && Object.keys(selected).length < 2) {
+
+      var newCorrect = structuredClone(correct)
+      var newSelected = structuredClone(selected)
+    
+      newSelected[id] = shapes[id]
+      newCorrect[id] = shapes[id]
+          
+      setCorrect(newCorrect)
+      setSelected(newSelected)
+
+      const selections = Object.keys(newSelected)
+
+      if (selections.length === 2) {
+
+        var newAttempts = attempts + 1
+        setAttempts(newAttempts)
+
+          if (shapes[selections[0]] !== shapes[selections[1]]) {
+        
+            clearTimeout(memorizeTimer)    
+
+            revealTimer = setTimeout(() => {
+              
+              setSelected({})
+      
+              delete newCorrect[selections[0]] 
+              delete newCorrect[selections[1]] 
+
+              setCorrect(newCorrect)
+            
+            }, 2000)
+
+          } else {
+
+            setSelected({})
+
+          }
+        
+      }
+
+    }
+    
+  }
 
   return (
+    
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
+      <div className="background">
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <div className="header">
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+          <Attempts attempts={attempts}/>
+          
+          {
+            
+            (Object.keys(correct).length === 16) ? <PlayAgainReset text="Play again" onClick={setupBoard} /> :
+                                                   <PlayAgainReset text="Restart" onClick={setupBoard} />
+          
+          }
+
+        </div>
+
+        <Board shapes={shapes}
+               correct={correct}
+               onClick={selectedBlock} />
+
+      </div>
+
     </>
-  )
-}
 
-export default App
+  )
+
+}
