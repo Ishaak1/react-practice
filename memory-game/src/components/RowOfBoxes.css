@@ -1,0 +1,8 @@
+.row {
+
+    height: 140px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+}
