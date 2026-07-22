@@ -1,0 +1,43 @@
+.board {
+
+    height: 640px;
+    width: 640px;
+    padding: 50px;
+    border-radius: 650px;
+    background-color: black;
+    position: relative;
+
+}
+
+.slices {
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.container {
+
+  height: 300px;
+  width: 300px;
+  background-color: black;
+  border-radius: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 220px;
+  top: 220px;
+
+}
+
+.round {
+    
+    font-family: Tahoma;
+    font-size: 100px;
+    color: white;
+
+}
