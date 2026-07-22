@@ -1,0 +1,13 @@
+.slice {
+
+    height: 100%;
+    width: 300px;
+    transition: background-color 0.5s ease;
+
+}
+
+.slice:hover {
+
+    cursor: pointer;
+
+}
